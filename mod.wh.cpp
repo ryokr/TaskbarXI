@@ -1429,32 +1429,40 @@ const Theme g_themeRosePine = {{
 
 
 const PCWSTR weatherBackground = L"Background:=<ImageBrush Stretch=\"UniformToFill\" ImageSource=\"H:\\A Ryo\\Pic\\Discord\\roxy.gif\" />";
-const PCWSTR systemTrayBackground = L"Background:=<AcrylicBrush TintColor=\"Black\" TintOpacity=\"0.4\" />";
+
+const PCWSTR systemTrayBackground = L"Background:=<AcrylicBrush TintColor=\"Black\" TintOpacity=\"0.6\" />";
+const PCWSTR taskbarBackground = L"Fill:=<AcrylicBrush TintColor=\"Black\" TintOpacity=\"0.6\" />";
+
 const PCWSTR horizontalAlignRight = L"HorizontalAlignment=Right";
 const PCWSTR horizontalAlignLeft = L"HorizontalAlignment=Left";
 const PCWSTR paddingZero = L"Padding=0";
 const PCWSTR marginZero = L"Margin=0";
-const PCWSTR roundAllCorner = L"CornerRadius=5";
 const PCWSTR widthAuto = L"Width=Auto";
+const PCWSTR roundAllCorner = L"CornerRadius=4";
+
+const PCWSTR taskbarTransform = L"Transform3D:=<CompositeTransform3D TranslateX=\"-804\"/>";
+const PCWSTR SystemtrayTransform = L"Transform3D:=<CompositeTransform3D TranslateX=\"1120.5\"/>";
 
 const Theme g_themeRyoMeow = {{
-    ThemeTargetStyles{L"Taskbar.TaskbarFrame#TaskbarFrame", { widthAuto, horizontalAlignRight, L"Transform3D:=<CompositeTransform3D TranslateX=\"-828\"/>" }},
+    ThemeTargetStyles{L"Taskbar.TaskbarFrame#TaskbarFrame", { widthAuto, horizontalAlignRight, taskbarTransform }},
     ThemeTargetStyles{L"Taskbar.TaskbarFrame#TaskbarFrame > Grid", { roundAllCorner }},
 
     ThemeTargetStyles{L"Taskbar.TaskbarBackground", { L"Opacity=1", }},
     ThemeTargetStyles{L"Taskbar.TaskbarBackground > Grid", { L"Transform3D:=<CompositeTransform3D TranslateX=\"156.5\"/>", roundAllCorner }},
-    ThemeTargetStyles{L"Rectangle#BackgroundFill", { L"Fill:=<AcrylicBrush TintColor=\"Black\" TintOpacity=\"0.4\" />" }},
+    ThemeTargetStyles{L"Rectangle#BackgroundFill", { taskbarBackground }},
     ThemeTargetStyles{L"Rectangle#BackgroundStroke", { L"Visibility=Collapsed" }},
 
     ThemeTargetStyles{L"Microsoft.UI.Xaml.Controls.ItemsRepeater#TaskbarFrameRepeater", { L"Margin=0,0,3,0" }},
     ThemeTargetStyles{L"Taskbar.AugmentedEntryPointButton > Taskbar.TaskListButtonPanel", { roundAllCorner, paddingZero, weatherBackground, L"Margin=0,0,4,0" }}, // weather section   left top right bottom
     ThemeTargetStyles{L"Border#LargeTicker1 > AdaptiveCards.Rendering.Uwp.WholeItemsPanel > Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer", { L"MaxHeight=30", L"MaxWidth=30" }}, // weather icon
     ThemeTargetStyles{L"Border#LargeTicker2 > AdaptiveCards.Rendering.Uwp.WholeItemsPanel > TextBlock", { horizontalAlignRight }}, // weather text
-    ThemeTargetStyles{L"Taskbar.ExperienceToggleButton > Taskbar.TaskListButtonPanel", { L"Padding=4,4,2,4" }}, // window button `      
-    ThemeTargetStyles{L"Taskbar.SearchBoxButton > Taskbar.TaskListButtonPanel > TextBlock", { L"Text=Meow" }}, // searcbox placeholder
+    ThemeTargetStyles{L"Taskbar.ExperienceToggleButton > Taskbar.TaskListButtonPanel", { L"Padding=5,4,2,4" }}, // window button `      
+    ThemeTargetStyles{L"Taskbar.SearchBoxButton > Taskbar.TaskListButtonPanel > TextBlock", { L"Text=✦ Meow" }}, // searcbox placeholder
+    ThemeTargetStyles{L"Taskbar.SearchBoxButton > Taskbar.TaskListButtonPanel", { L"Margin=2,0,6,0" }},
 
-    ThemeTargetStyles{L"SystemTray.SystemTrayFrame", { horizontalAlignLeft, L"Transform3D:=<CompositeTransform3D TranslateX=\"1096.5\"/>" }},         // Systemtray
-    ThemeTargetStyles{L"Grid#SystemTrayFrameGrid", { widthAuto, roundAllCorner, marginZero, systemTrayBackground, L"Padding=9,3,3,3" }},
+    ThemeTargetStyles{L"SystemTray.SystemTrayFrame", { horizontalAlignLeft, SystemtrayTransform }},         // Systemtray
+    ThemeTargetStyles{L"Grid#SystemTrayFrameGrid", { widthAuto, roundAllCorner, marginZero, systemTrayBackground, L"Padding=8,3,3,3" }},
+    
 
     // ThemeTargetStyles{L"Windows.UI.Xaml.Controls.TextBlock#InnerTextBlock[Text=\uE971]", {
     //     L"Text=\uE712"}},               // chevron systray to threedot
@@ -1462,19 +1470,52 @@ const Theme g_themeRyoMeow = {{
     //     L"Padding=0"}},
     // ThemeTargetStyles{L"SystemTray.NotifyIconView#NotifyItemIcon", {
     //     L"Padding=0"}},
-    // ThemeTargetStyles{L"SystemTray.OmniButton", {
-    //     L"Padding=0"}},
-    // ThemeTargetStyles{L"SystemTray.CopilotIcon", {
-    //     L"Padding=0"}},
-    ThemeTargetStyles{L"SystemTray.OmniButton#NotificationCenterButton > Grid > ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter > systemtray:IconView#SystemTrayIcon > Grid > Grid > SystemTray.DateTimeIconContent", {
-        // L"Visibility=Collapsed"
-    }},
+
+
+    // ThemeTargetStyles{L"SystemTray.Stack#NotifyIconStack > Grid", {
+    //     systemTrayBackground,
+    //     roundAllCorner,
+    //     L"Padding=8,4,8,4",
+    // }},
+    ThemeTargetStyles{L"SystemTray.Stack#MainStack", {
+        L"Grid.Column=7",
+    }}, // mic/location icon
+    // ThemeTargetStyles{L"SystemTray.Stack#MainStack > Grid", {
+    //     systemTrayBackground,
+    //     roundAllCorner,
+    //     L"Padding=8,4,8,4",
+    // }},
+
+    // ThemeTargetStyles{L"SystemTray.Stack#NonActivatableStack > Grid", {
+    //     systemTrayBackground,
+    //     roundAllCorner,
+    //     L"Padding=8,4,8,4",
+    // }}, // language
+
+    // ThemeTargetStyles{L"SystemTray.OmniButton#ControlCenterButton", {
+    //     // L"Margin=4,0,4,0",
+    // }},
+    // ThemeTargetStyles{L"SystemTray.OmniButton#ControlCenterButton > Grid", {
+    //     systemTrayBackground,
+    //     roundAllCorner,
+    //     L"Padding=8,4,8,4",
+    // }},  // control center
+
+
+    // ThemeTargetStyles{L"SystemTray.OmniButton#NotificationCenterButton > Grid", {
+    //     systemTrayBackground,
+    //     roundAllCorner,
+    //     L"Padding=8,4,8,4",
+    // }},
+
+    // ThemeTargetStyles{L"SystemTray.OmniButton#NotificationCenterButton > Grid > ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter > systemtray:IconView#SystemTrayIcon > Grid > Grid > SystemTray.DateTimeIconContent", {
+    //     // L"Visibility=Collapsed"
+    // }},
     ThemeTargetStyles{L"SystemTray.OmniButton#NotificationCenterButton > Grid > ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter > systemtray:IconView#SystemTrayIcon > Grid > Grid > SystemTray.TextIconContent", {
         L"Visibility=Collapsed"}},
+
     // ThemeTargetStyles{L"SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon", {
     //     L"Padding=0"}},
-    // ThemeTargetStyles{L"SystemTray.Stack#ShowDesktopStack", {
-    //     L"Margin=0,-4,-12,-4"}},
 }};
 
 
